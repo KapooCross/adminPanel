@@ -1,0 +1,4 @@
+CREATE TABLE race(
+    race_id INTEGER NOT NULL PRIMARY KEY,
+    race_name VARCHAR(50) NOT NULL
+  );
