@@ -1,5 +1,5 @@
   INSERT INTO race (race_id, race_name)
   VALUES
-      (111, 'Hobbit'),
-      (222, 'Rogue'),
-      (333, 'Dwarf');
+      (1, 'Hobbit'),
+      (2, 'Rogue'),
+      (3, 'Dwarf');
