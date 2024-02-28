@@ -33,7 +33,7 @@ public class User {
     private Profession profession;
 
     @Column(name="user_level")
-    private Integer Level;
+    private Integer level;
 
     @Column(name="date_of_birth", columnDefinition = "DATE")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -42,6 +42,9 @@ public class User {
     @Column(name="date_of_registration", columnDefinition = "DATE")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfRegistration;
+
+    @Column(name="status", length = 8)
+    private String status;
 
 
 }

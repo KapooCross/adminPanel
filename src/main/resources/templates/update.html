@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Update</title>
+  <link rel="stylesheet" href="input_form.css">
+</head>
+<body>
+<h2>Update user</h2>
+
+<form action="#" th:action="@{/save}" method="post" th:object="${user}">
+  <input type="hidden" th:field="*{id}">
+
+  <label>User name: </label>
+  <input type="text" th:field="*{name}"><br/>
+
+
+
+  <label>Race:</label>
+  <select id="Race" th:field="*{race}" required>
+    <option th:each="race : ${raceList}" th:value="${race.race_id}" th:text="${race.raceName}"></option>
+  </select><br>
+
+  <label>Profession:</label>
+  <select id="Profession" th:field="*{profession}" required>
+    <option th:each="profession : ${professionList}" th:value="${profession.profession_id}" th:text="${profession.professionName}"></option>
+  </select><br>
+
+  <label>Level: </label>
+  <input type="number" th:field="*{level}"><br/>
+
+
+
+
+  <label>B-day (YYYY-MM-DD): </label>
+  <input type="date" th:field="*{{dateOfBirth}}" th:value="*{{dateOfBirth}}"><br/>
+
+
+  <label>Date of registration (YYYY-MM-DD):</label>
+  <input type="date" th:field="*{dateOfRegistration}"><br/>
+
+  <label>Status:</label>
+  <input type="radio" th:field="*{status}" th:value="active" th:checked="${user.status == 'active'}"/>active
+  <input type="radio" th:field="*{status}" th:value="banned" th:checked="${user.status == 'banned'}"/>banned<br/>
+  <br/>
+
+
+  <button type="submit">Update information</button>
+</form>
+</body>
+</html>

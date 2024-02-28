@@ -24,6 +24,7 @@
                 <th>Level</th>
                 <th>B-day</th>
                 <th>Date of registration</th>
+                <th>Status</th>
             </tr>
             </thead>
             <tbody>
@@ -37,6 +38,7 @@
                 <td th:text="${user.Level}"></td>
                 <td th:text="${user.dateOfBirth}"></td>
                 <td th:text="${user.dateOfRegistration}"></td>
+                <td th:text="${user.status}"></td>
                 <td>
                     <a class="btn btn-primary" th:href="@{/showFormForUpdate/{id}(id=${user.id})}">Edit</a>
                     <a class="btn btn-danger" th:href="@{/delete/{id}(id=${user.id})}">Delete</a>

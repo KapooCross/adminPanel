@@ -1,5 +1,7 @@
 package by.itstep.adminPanel.controller;
 
+import by.itstep.adminPanel.model.Profession;
+import by.itstep.adminPanel.model.Race;
 import by.itstep.adminPanel.model.User;
 import by.itstep.adminPanel.repository.ProfessionRepository;
 import by.itstep.adminPanel.repository.RaceRepository;
@@ -8,9 +10,13 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Controller
 @AllArgsConstructor
@@ -31,7 +37,25 @@ public class UserController {
         return showUserListPaginatedAndSorted(1, "name", "asc", model);
 //        return "users";
     }
-    /////
+
+
+    @GetMapping("/add_user")
+    public String showInputForm(@ModelAttribute("user") User user) {
+        return "add_user";
+    }
+
+//    @PostMapping("add_user")
+//    public RedirectView addUser(@ModelAttribute("user") User user) {
+//        userService.save(user);
+//        return new RedirectView("add_success", true);
+//    }
+
+    @PostMapping("/add_user")
+    public String addUser(@ModelAttribute("user") User user){
+        userService.save(user);
+        return "/add_user_success";
+    }
+
 
     @GetMapping("/page/{pageNumber}")
     public String showUserListPaginatedAndSorted(@PathVariable(value = "pageNumber") int pageNumber,
@@ -58,6 +82,33 @@ public class UserController {
     public String deletePatient(@PathVariable("id") Long id){
         this.userService.deleteById(id);
         return "redirect:/users";
+    }
+
+    @GetMapping("/showFormForUpdate/{id}")
+    public String showFormForUpdate(@PathVariable(value = "id") Long id, Model model){
+        Optional<User> user = userService.findById(id);
+        model.addAttribute("user", user.get());
+        return "update";
+    }
+
+    @PostMapping("/save")
+    public String saveUser(@ModelAttribute("user") User user){
+        userService.save(user);
+        return "redirect:/users";
+    }
+
+    @ModelAttribute("professionList")
+    public List<Profession> populateProfession() {
+        Iterable<Profession> professions = professionRepository.findAll();
+        return StreamSupport.stream(professions.spliterator(), false)
+                .collect(Collectors.toList());
+    }
+
+    @ModelAttribute("raceList")
+    public List<Race> populateRace() {
+        Iterable<Race> professions = raceRepository.findAll();
+        return StreamSupport.stream(professions.spliterator(), false)
+                .collect(Collectors.toList());
     }
 }
 
