@@ -39,5 +39,9 @@ public class User {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
 
+    @Column(name="date_of_registration", columnDefinition = "DATE")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateOfRegistration;
+
 
 }

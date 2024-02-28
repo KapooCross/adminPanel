@@ -6,5 +6,6 @@ CREATE TABLE users(
     profession_id INTEGER NOT NULL,
     FOREIGN KEY (profession_id) REFERENCES profession(profession_id),
     user_level INT NOT NULL,
-    date_of_birth DATE NOT NULL
+    date_of_birth DATE NOT NULL,
+    date_of_registration DATE NOT NULL
 );
