@@ -22,8 +22,14 @@
                 <th>Race</th>
                 <th>Profession</th>
                 <th>Level</th>
-                <th>B-day</th>
-                <th>Date of registration</th>
+                <th>
+                    <a th:href="@{'/page/'+${currentPage}+'?sortField=dateOfBirth&sortDir='+${reverseSortDir}} ">B-day</a>
+                </th>
+<!--                <th>B-day</th>-->
+<!--                <th>Date of registration</th>-->
+                <th>
+                <a th:href="@{'/page/'+${currentPage}+'?sortField=dateOfRegistration&sortDir='+${reverseSortDir}} ">Date of registration</a>
+                </th>
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
