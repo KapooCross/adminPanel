@@ -8,38 +8,85 @@
 <body>
 <h2>Add new user</h2>
 
-  <form action="#" th:action="@{/add_user}" method="post" th:object="${user}">
+<!--  <form action="#" th:action="@{/add_user}" method="post" th:object="${user}">-->
 
-    <label>User name: </label>
-    <input type="text" th:field="*{name}"><br/>
+<!--    <label>User name: </label>-->
+<!--    <input type="text" th:field="*{name}"><br/>-->
 
-    <label>Race:</label>
-    <select id="Race" th:field="*{race}" required>
-      <option th:each="race : ${raceList}" th:value="${race.race_id}" th:text="${race.raceName}"></option>
-    </select><br>
+<!--    <label>Race:</label>-->
+<!--    <select id="Race" th:field="*{race}" required>-->
+<!--      <option th:each="race : ${raceList}" th:value="${race.race_id}" th:text="${race.raceName}"></option>-->
+<!--    </select><br>-->
 
-    <label>Profession:</label>
-    <select id="Profession" th:field="*{profession}" required>
-      <option th:each="profession : ${professionList}" th:value="${profession.profession_id}" th:text="${profession.professionName}"></option>
-    </select><br>
+<!--    <label>Profession:</label>-->
+<!--    <select id="Profession" th:field="*{profession}" required>-->
+<!--      <option th:each="profession : ${professionList}" th:value="${profession.profession_id}" th:text="${profession.professionName}"></option>-->
+<!--    </select><br>-->
 
-    <label>Level: </label>
-    <input type="number" th:field="*{level}"><br/>
+<!--    <label>Level: </label>-->
+<!--    <input type="number" th:field="*{level}"><br/>-->
 
 
-    <label>B-day (YYYY-MM-DD): </label>
-    <input type="date" th:field="*{dateOfBirth}"><br/>
+<!--    <label>B-day (YYYY-MM-DD): </label>-->
+<!--    <input type="date" th:field="*{dateOfBirth}"><br/>-->
 
-    <label>Date of registration (YYYY-MM-DD):</label>
-    <input type="date" th:field="*{dateOfRegistration}"><br/>
+<!--    <label>Date of registration (YYYY-MM-DD):</label>-->
+<!--    <input type="date" th:field="*{dateOfRegistration}"><br/>-->
 
-    <label>Status:</label>
-    <input type="radio" th:field="*{status}" value="active" />active
-    <input type="radio" th:field="*{status}" value="banned" />banned<br/>
+<!--    <label>Status:</label>-->
+<!--    <input type="radio" th:field="*{status}" value="active" />active-->
+<!--    <input type="radio" th:field="*{status}" value="banned" />banned<br/>-->
+
+<!--  <button type="submit">Save information</button>-->
+
+
+<!--</form>-->
+
+<form action="#" th:action="@{/add_user}" method="post" th:object="${user}">
+
+  <label>User name: </label>
+  <input type="text" th:field="*{name}">
+  <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+  <br/>
+
+  <label>Race:</label>
+  <select id="Race" th:field="*{race}" required>
+    <option th:each="race : ${raceList}" th:value="${race.race_id}" th:text="${race.raceName}"></option>
+  </select><br>
+
+  <label>Profession:</label>
+  <select id="Profession" th:field="*{profession}" required>
+    <option th:each="profession : ${professionList}" th:value="${profession.profession_id}" th:text="${profession.professionName}"></option>
+  </select><br>
+
+  <label>Level: </label>
+  <input type="number" th:field="*{level}">
+  <td th:if="${#fields.hasErrors('level')}" th:errors="*{level}">Level Error</td>
+  <br/>
+
+
+  <label>B-day (YYYY-MM-DD): </label>
+  <input type="date" th:field="*{dateOfBirth}">
+  <td th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}">Date Error</td>
+  <br/>
+
+  <label>Date of registration (YYYY-MM-DD):</label>
+  <input type="date" th:field="*{dateOfRegistration}">
+  <td th:if="${#fields.hasErrors('dateOfRegistration')}" th:errors="*{dateOfRegistration}">Date Error</td>
+  <br/>
+
+  <label>Status:</label>
+  <input type="radio" th:field="*{status}" value="active" />active
+  <input type="radio" th:field="*{status}" value="banned" />banned
+  <td th:if="${#fields.hasErrors('status')}" th:errors="*{status}">Status Error</td>
+  <br/>
 
   <button type="submit">Save information</button>
 
 
 </form>
+
+
+
 </body>
 </html>

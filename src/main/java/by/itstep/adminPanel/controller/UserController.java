@@ -6,10 +6,12 @@ import by.itstep.adminPanel.model.User;
 import by.itstep.adminPanel.repository.ProfessionRepository;
 import by.itstep.adminPanel.repository.RaceRepository;
 import by.itstep.adminPanel.service.UserServiceImpl;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -25,7 +27,7 @@ public class UserController {
     private final UserServiceImpl userService;
     private final ProfessionRepository professionRepository;
     private final RaceRepository raceRepository;
-    private final int PAGE_SIZE = 5;
+    private final int PAGE_SIZE = 10;
 
     @GetMapping("/")
     public String showMenu() {
@@ -51,7 +53,10 @@ public class UserController {
 //    }
 
     @PostMapping("/add_user")
-    public String addUser(@ModelAttribute("user") User user){
+    public String addUser(@ModelAttribute("user") @Valid User user, BindingResult result){
+        if (result.hasErrors()) {
+            return "add_user";
+        }
         userService.save(user);
         return "/add_user_success";
     }
