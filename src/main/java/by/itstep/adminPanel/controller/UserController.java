@@ -97,7 +97,10 @@ public class UserController {
     }
 
     @PostMapping("/save")
-    public String saveUser(@ModelAttribute("user") User user){
+    public String saveUser(@ModelAttribute("user") @Valid User user, BindingResult result){
+        if (result.hasErrors()) {
+            return "update";
+        }
         userService.save(user);
         return "redirect:/users";
     }
