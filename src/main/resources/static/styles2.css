@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #B0E0E6;
+}
+
+h2{
+color: #5F9EA0;
+}
+
+a {
+    display: inline-block;
+    width: 15%;
+    margin-up: 5px;
+    margin-bottom: 5px;
+    padding: 10px 20px;
+    background-color: #2F4F4F;
+    color: #5F9EA0;
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: #4682B4;
+}
+
+
