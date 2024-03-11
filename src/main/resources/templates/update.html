@@ -52,11 +52,6 @@
   <input type="radio" th:field="*{status}" th:value="banned" th:checked="${user.status == 'banned'}"/>banned
   <td th:if="${#fields.hasErrors('status')}" th:errors="*{status}">Status Error</td>
   <br/>
-  <br/>
-
-
-
-  <br/>
 
   <button type="submit">Update information</button>
 </form>

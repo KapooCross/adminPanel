@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -37,7 +38,6 @@ public class UserController {
     @GetMapping("/users")
     public String showUsersList(Model model) {
         return showUserListPaginatedAndSorted(1, "name", "asc", model);
-//        return "users";
     }
 
 
@@ -74,7 +74,7 @@ public class UserController {
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
         model.addAttribute("userList", userList);
-        //для сортировки
+        //sort
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
@@ -118,5 +118,19 @@ public class UserController {
         return StreamSupport.stream(professions.spliterator(), false)
                 .collect(Collectors.toList());
     }
+
+    @GetMapping("/search")
+    public String searchUserById(@RequestParam("id") Long id, Model model) {
+        Optional<User> user = userService.findById(id);
+        if (user.isPresent()) {
+            model.addAttribute("userList", Collections.singletonList(user.get()));
+        } else {
+            model.addAttribute("userList", Collections.emptyList());
+        }
+        return "users";
+    }
+
+
+
 }
 
