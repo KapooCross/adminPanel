@@ -9,6 +9,7 @@ import lombok.experimental.FieldNameConstants;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.Collections;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -54,6 +55,4 @@ public class User {
     @NotNull(message = " The field must not be empty!")
     @Column(name="status", length = 8)
     private String status;
-
-
 }
